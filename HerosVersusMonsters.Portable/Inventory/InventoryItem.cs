@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
+using HerosVersusMonsters.Portable.Stats;
 
-namespace HerosVersusMonsters.Portable
+namespace HerosVersusMonsters.Portable.Inventory
 {
     public class InventoryItem
     {

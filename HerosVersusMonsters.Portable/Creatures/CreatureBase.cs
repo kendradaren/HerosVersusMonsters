@@ -1,15 +1,19 @@
 ﻿using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using HerosVersusMonsters.Portable.Classes;
+using HerosVersusMonsters.Portable.Inventory;
+using HerosVersusMonsters.Portable.Stats;
 using Newtonsoft.Json;
 
-namespace HerosVersusMonsters.Portable
+namespace HerosVersusMonsters.Portable.Creatures
 {
     public abstract class CreatureBase
     {
         protected CreatureBase(double agility, double charisma, double intelligence, double stamina, double strength,
-            double wisdom)
+            double wisdom, CreatureClassType creatureClassType)
         {
+            CreatureClass = CreatureClassFactory.Create(creatureClassType, this);
             Stats = new Dictionary<StatType, Stat>
             {
                 {StatType.Agility, new Stat(StatType.Agility, agility)},
@@ -51,6 +55,8 @@ namespace HerosVersusMonsters.Portable
         public List<InventoryItem> Inventory { get; } = new List<InventoryItem>();
 
         public List<Bonus> Bonuses { get; } = new List<Bonus>();
+
+        public CreatureClassBase CreatureClass { get; }
 
 
         public void EquipItem(InventoryItem inventoryItem)

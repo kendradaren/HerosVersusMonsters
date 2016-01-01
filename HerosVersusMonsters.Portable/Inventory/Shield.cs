@@ -1,6 +1,6 @@
 ﻿using System.Diagnostics;
 
-namespace HerosVersusMonsters.Portable
+namespace HerosVersusMonsters.Portable.Inventory
 {
     public class Shield : ArmorItem
     {

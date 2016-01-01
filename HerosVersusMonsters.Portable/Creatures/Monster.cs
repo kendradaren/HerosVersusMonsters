@@ -1,4 +1,4 @@
-﻿namespace HerosVersusMonsters.Portable
+﻿namespace HerosVersusMonsters.Portable.Creatures
 {
     public class Monster : CreatureBase
     {

@@ -1,4 +1,4 @@
-﻿namespace HerosVersusMonsters.Portable
+﻿namespace HerosVersusMonsters.Portable.Stats
 {
     public enum StatType
     {

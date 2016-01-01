@@ -1,4 +1,6 @@
 ﻿using System;
+using HerosVersusMonsters.Portable.Creatures;
+using HerosVersusMonsters.Portable.Inventory;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace HerosVersusMonsters.Portable.Tests

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using HerosVersusMonsters.Portable.Inventory;
 
 namespace HerosVersusMonsters.Portable.Tests
 {
