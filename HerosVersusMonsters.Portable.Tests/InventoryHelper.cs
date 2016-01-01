@@ -96,7 +96,7 @@ namespace HerosVersusMonsters.Portable.Tests
                 Price = RandomSeed.Next(10, 100),
                 Slot = slot,
                 Weight = RandomSeed.Next(5, 10),
-                IsEquipped = RandomSeed.NextDouble() > 0.8
+                IsEquipped = RandomSeed.NextDouble() > 0.8 && slot.HasValue
             };
         }
 
@@ -110,7 +110,7 @@ namespace HerosVersusMonsters.Portable.Tests
                 Price = RandomSeed.Next(6),
                 Slot = slot,
                 Weight = RandomSeed.Next(5),
-                IsEquipped = RandomSeed.NextDouble() > 0.8
+                IsEquipped = RandomSeed.NextDouble() > 0.8 && slot.HasValue
             };
         }
     }

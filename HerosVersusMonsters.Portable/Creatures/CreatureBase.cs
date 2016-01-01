@@ -25,22 +25,27 @@ namespace HerosVersusMonsters.Portable.Creatures
             };
         }
 
-        public Dictionary<ItemSlotType, InventoryItem> Slots { get; } = new Dictionary<ItemSlotType, InventoryItem>
+        public Dictionary<ItemSlotType, InventoryItem> Slots { get; } = InitializeSlots();
+
+        private static Dictionary<ItemSlotType, InventoryItem> InitializeSlots()
         {
-            {ItemSlotType.Cloak, null},
-            {ItemSlotType.Feet, null},
-            {ItemSlotType.Head, null},
-            {ItemSlotType.Hands, null},
-            {ItemSlotType.LeftHandRing, null},
-            {ItemSlotType.Legs, null},
-            {ItemSlotType.Neck, null},
-            {ItemSlotType.RightHandRing, null},
-            {ItemSlotType.Torso, null},
-            {ItemSlotType.OneHandedWeapon, null},
-            {ItemSlotType.TwoHandedWeapon, null},
-            {ItemSlotType.Shield, null},
-            {ItemSlotType.Waist, null}
-        };
+            return new Dictionary<ItemSlotType, InventoryItem>
+            {
+                {ItemSlotType.Cloak, null},
+                {ItemSlotType.Feet, null},
+                {ItemSlotType.Head, null},
+                {ItemSlotType.Hands, null},
+                {ItemSlotType.LeftHandRing, null},
+                {ItemSlotType.Legs, null},
+                {ItemSlotType.Neck, null},
+                {ItemSlotType.RightHandRing, null},
+                {ItemSlotType.Torso, null},
+                {ItemSlotType.OneHandedWeapon, null},
+                {ItemSlotType.TwoHandedWeapon, null},
+                {ItemSlotType.Shield, null},
+                {ItemSlotType.Waist, null}
+            };
+        }
 
         public Dictionary<StatType, Stat> Stats { get; }
 
@@ -170,12 +175,27 @@ namespace HerosVersusMonsters.Portable.Creatures
 
         public string SerializeInventory()
         {
-            return JsonConvert.SerializeObject(Inventory);
+            JsonSerializerSettings settings = new JsonSerializerSettings
+            {
+                TypeNameHandling = TypeNameHandling.All
+            };
+            return JsonConvert.SerializeObject(Inventory, settings);
         }
 
         public void DeserializeInventory(string json)
         {
-            var inventory = JsonConvert.DeserializeObject<List<InventoryItem>>(json);
+            this.Inventory.Clear();
+            this.Slots.Clear();
+            foreach (var initializeSlot in InitializeSlots())
+            {
+                this.Slots.Add(initializeSlot.Key, initializeSlot.Value);
+            }
+
+            JsonSerializerSettings settings = new JsonSerializerSettings
+            {
+                TypeNameHandling = TypeNameHandling.All
+            };
+            var inventory = JsonConvert.DeserializeObject<List<InventoryItem>>(json, settings);
             Inventory.Clear();
             foreach (var inventoryItem in inventory)
             {

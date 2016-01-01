@@ -111,5 +111,40 @@ namespace HerosVersusMonsters.Portable.Tests
             Assert.IsNull(hero.Slots[ItemSlotType.Shield]);
             Assert.AreSame(weapon1, hero.Slots[ItemSlotType.TwoHandedWeapon]);
         }
+
+        [TestMethod]
+        public void SaveInventoryToJson()
+        {
+            var hero = new Hero(10, 10, 10, 10, 10, 10, CreatureClassType.Warrior);
+            var items = InventoryHelper.BuildInventoryItems(50);
+            foreach (var inventoryItem in items)
+            {
+                if (inventoryItem.IsEquipped)
+                {
+                    if (inventoryItem is Weapon)
+                    {
+                        hero.EquipWeapon((Weapon)inventoryItem);
+                    }
+                    else if (inventoryItem is Shield)
+                    {
+                        hero.EquipShield((Shield)inventoryItem);
+                    }
+                    else
+                    {
+                        hero.EquipItem(inventoryItem);
+                    }
+                }
+                else
+                {
+                    hero.AddToInventory(inventoryItem);
+                }
+            }
+
+            var json = hero.SerializeInventory();
+            Assert.IsNotNull(json);
+
+            hero.DeserializeInventory(json);
+        }
+
     }
 }
