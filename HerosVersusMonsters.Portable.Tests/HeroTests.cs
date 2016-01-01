@@ -1,4 +1,5 @@
 ﻿using System;
+using HerosVersusMonsters.Portable.Classes;
 using HerosVersusMonsters.Portable.Creatures;
 using HerosVersusMonsters.Portable.Inventory;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -11,7 +12,7 @@ namespace HerosVersusMonsters.Portable.Tests
         [TestMethod]
         public void ConstructorTest()
         {
-            var hero = new Hero(10, 10, 10, 10, 10, 10);
+            var hero = new Hero(10, 10, 10, 10, 10, 10, CreatureClassType.Warrior);
             Assert.IsNotNull(hero);
         }
 
@@ -19,7 +20,7 @@ namespace HerosVersusMonsters.Portable.Tests
         public void EquipWeaponTest()
         {
             var weapon = InventoryHelper.CreateWeapon();
-            var hero = new Hero(10, 10, 10, 10, 10, 10);
+            var hero = new Hero(10, 10, 10, 10, 10, 10, CreatureClassType.Warrior);
             hero.EquipWeapon(weapon);
             Assert.AreSame(weapon, hero.Slots[weapon.Slot.Value]);
 
@@ -28,7 +29,7 @@ namespace HerosVersusMonsters.Portable.Tests
         public void EquipShieldTest()
         {
             var shield = InventoryHelper.CreateShield();
-            var hero = new Hero(10, 10, 10, 10, 10, 10);
+            var hero = new Hero(10, 10, 10, 10, 10, 10, CreatureClassType.Warrior);
             hero.EquipShield(shield);
             Assert.AreSame(shield, hero.Slots[shield.Slot.Value]);
 
@@ -40,7 +41,7 @@ namespace HerosVersusMonsters.Portable.Tests
             var weapon1 = InventoryHelper.CreateWeapon();
             var weapon2 = InventoryHelper.CreateWeapon();
 
-            var hero = new Hero(10, 10, 10, 10, 10, 10);
+            var hero = new Hero(10, 10, 10, 10, 10, 10, CreatureClassType.Warrior);
             hero.EquipWeapon(weapon1);
             hero.EquipWeapon(weapon2);
             Assert.AreSame(weapon2, hero.Slots[weapon2.Slot.Value]);
@@ -54,7 +55,7 @@ namespace HerosVersusMonsters.Portable.Tests
             weapon1.Slot = ItemSlotType.OneHandedWeapon;
             var shield = InventoryHelper.CreateShield();
 
-            var hero = new Hero(10, 10, 10, 10, 10, 10);
+            var hero = new Hero(10, 10, 10, 10, 10, 10, CreatureClassType.Warrior);
             hero.EquipWeapon(weapon1);
             hero.EquipShield(shield);
             Assert.AreSame(weapon1, hero.Slots[ItemSlotType.OneHandedWeapon]);
@@ -68,7 +69,7 @@ namespace HerosVersusMonsters.Portable.Tests
             weapon1.Slot = ItemSlotType.TwoHandedWeapon;
             var shield = InventoryHelper.CreateShield();
 
-            var hero = new Hero(10, 10, 10, 10, 10, 10);
+            var hero = new Hero(10, 10, 10, 10, 10, 10, CreatureClassType.Warrior);
             hero.EquipWeapon(weapon1);
             hero.EquipShield(shield);
             Assert.IsNull(hero.Slots[ItemSlotType.TwoHandedWeapon]);
@@ -84,7 +85,7 @@ namespace HerosVersusMonsters.Portable.Tests
             weapon2.Slot = ItemSlotType.TwoHandedWeapon;
             var shield = InventoryHelper.CreateShield();
 
-            var hero = new Hero(10, 10, 10, 10, 10, 10);
+            var hero = new Hero(10, 10, 10, 10, 10, 10, CreatureClassType.Warrior);
             hero.EquipShield(shield);
             hero.EquipWeapon(weapon1);
             Assert.AreSame(weapon1, hero.Slots[ItemSlotType.OneHandedWeapon]);
@@ -104,7 +105,7 @@ namespace HerosVersusMonsters.Portable.Tests
             weapon1.Slot = ItemSlotType.TwoHandedWeapon;
             var shield = InventoryHelper.CreateShield();
 
-            var hero = new Hero(10, 10, 10, 10, 10, 10);
+            var hero = new Hero(10, 10, 10, 10, 10, 10, CreatureClassType.Warrior);
             hero.EquipShield(shield);
             hero.EquipWeapon(weapon1);
             Assert.IsNull(hero.Slots[ItemSlotType.Shield]);
